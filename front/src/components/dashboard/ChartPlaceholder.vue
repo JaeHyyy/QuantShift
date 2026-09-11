@@ -1,9 +1,9 @@
 <template>
   <section class="panel chart-panel">
-    <h2 class="panel-title">BTC 가격 차트</h2>
+    <h2 class="panel-title">가격 흐름</h2>
     <div class="chart-placeholder">
       <p class="placeholder-value">차트 준비 중</p>
-      <p class="muted hint">실제 거래소 OHLCV / 차트 라이브러리 연결 예정</p>
+      <p class="muted hint">실제 시세가 연결되면 여기에 가격 그래프가 표시됩니다.</p>
     </div>
   </section>
 </template>
@@ -30,5 +30,7 @@
 .hint {
   margin: 0;
   font-size: 12px;
+  text-align: center;
+  padding: 0 16px;
 }
 </style>

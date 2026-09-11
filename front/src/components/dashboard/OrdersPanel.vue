@@ -6,7 +6,7 @@
         <thead>
           <tr>
             <th>시간</th>
-            <th>구분</th>
+            <th>매수/매도</th>
             <th>가격</th>
             <th>수량</th>
             <th>상태</th>
@@ -14,7 +14,12 @@
         </thead>
         <tbody>
           <tr>
-            <td colspan="5" class="empty">주문 내역 없음 · 거래소 미연결</td>
+            <td
+              colspan="5"
+              class="empty"
+            >
+              주문 내역 없음 · 거래소 연결 준비 중
+            </td>
           </tr>
         </tbody>
       </table>
@@ -44,8 +49,6 @@ th {
   color: var(--text-muted);
   font-weight: 600;
   font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
 }
 
 .empty {
