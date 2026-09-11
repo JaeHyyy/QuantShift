@@ -69,20 +69,20 @@ onMounted(loadRegime)
 
 <style scoped>
 .dashboard {
-  max-width: 1440px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 16px;
+  padding: 22px 20px 36px;
 }
 
 .dashboard-grid {
   display: grid;
-  grid-template-columns: 1.6fr 1fr;
+  grid-template-columns: 1.55fr 1fr;
   grid-template-areas:
     "chart asset"
     "chart perf"
     "market market"
     "orders risk";
-  gap: 12px;
+  gap: 14px;
 }
 
 .area-chart { grid-area: chart; }

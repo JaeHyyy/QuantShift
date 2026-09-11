@@ -1,21 +1,26 @@
 <template>
-  <header class="topbar panel">
-    <div class="brand-block">
-      <div class="brand-row">
-        <span class="brand-name">QuantShift</span>
-        <span class="pair muted">BTC/KRW</span>
+  <header class="topbar">
+    <div class="brand-row">
+      <div class="brand-left">
+        <span class="logo-mark" aria-hidden="true" />
+        <div>
+          <div class="title-line">
+            <h1 class="brand-name">QuantShift</h1>
+            <span class="pair">BTC / KRW</span>
+          </div>
+          <p class="brand-sub">자동매매 현황을 한눈에</p>
+        </div>
       </div>
-      <p class="brand-sub muted">자동매매 현황을 한눈에 확인하세요</p>
     </div>
 
-    <div class="status-cards">
-      <div class="status-card">
+    <div class="status-strip">
+      <div class="status-item">
         <span class="metric-label">자동매매</span>
         <span class="status-main">꺼짐</span>
         <span class="status-sub muted">준비 중 · 아직 연결되지 않음</span>
       </div>
 
-      <div class="status-card">
+      <div class="status-item featured">
         <span class="metric-label">지금 시장</span>
         <template v-if="loading">
           <span class="status-main muted">불러오는 중…</span>
@@ -29,13 +34,13 @@
         </template>
       </div>
 
-      <div class="status-card">
+      <div class="status-item">
         <span class="metric-label">대응 전략</span>
         <span class="status-main">—</span>
         <span class="status-sub muted">준비 중</span>
       </div>
 
-      <div class="status-card">
+      <div class="status-item">
         <span class="metric-label">오늘 수익/손실</span>
         <span class="status-main">—</span>
         <span class="status-sub muted">준비 중</span>
@@ -47,8 +52,11 @@
       class="action-banner"
       :class="actionClass"
     >
-      <strong>지금 알아둘 점</strong>
-      <span>{{ regimeCopy.actionHint }}</span>
+      <span class="action-dot" aria-hidden="true" />
+      <div>
+        <strong>지금 알아둘 점</strong>
+        <span>{{ regimeCopy.actionHint }}</span>
+      </div>
     </div>
 
     <p
@@ -83,83 +91,140 @@ const actionClass = computed(() => {
 .topbar {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  margin-bottom: 12px;
+  gap: 18px;
+  margin-bottom: 16px;
+  padding: 8px 2px 4px;
 }
 
-.brand-row {
+.brand-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo-mark {
+  width: 14px;
+  height: 36px;
+  border-radius: 99px;
+  background: linear-gradient(180deg, #2dd4bf, var(--brand-strong));
+  box-shadow: 0 0 0 4px var(--brand-soft);
+  flex-shrink: 0;
+}
+
+.title-line {
   display: flex;
   align-items: baseline;
   gap: 12px;
 }
 
 .brand-name {
-  font-size: 22px;
+  margin: 0;
+  font-family: var(--display);
+  font-size: 28px;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+  color: var(--text);
 }
 
 .pair {
   font-size: 13px;
+  color: var(--brand);
+  font-weight: 600;
 }
 
 .brand-sub {
-  margin: 4px 0 0;
+  margin: 2px 0 0;
   font-size: 13px;
+  color: var(--text-muted);
 }
 
-.status-cards {
+.status-strip {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
+  gap: 0;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg-panel);
+  box-shadow: var(--shadow);
 }
 
-.status-card {
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 10px 12px;
+.status-item {
+  padding: 16px 18px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  min-height: 88px;
+  gap: 6px;
+  min-height: 104px;
+  border-right: 1px solid var(--border-soft);
+}
+
+.status-item:last-child {
+  border-right: none;
+}
+
+.status-item.featured {
+  background: linear-gradient(180deg, var(--brand-soft), transparent 70%);
 }
 
 .status-main {
-  font-size: 18px;
+  font-family: var(--display);
+  font-size: 22px;
   font-weight: 700;
-  line-height: 1.25;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 .status-sub {
   font-size: 12px;
-  line-height: 1.35;
+  line-height: 1.4;
 }
 
 .action-banner {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px 12px;
-  align-items: baseline;
-  padding: 10px 12px;
-  border-radius: 6px;
-  border: 1px solid var(--border);
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
   font-size: 13px;
+  line-height: 1.45;
+}
+
+.action-banner strong {
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.action-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-top: 5px;
+  flex-shrink: 0;
+  background: var(--brand);
 }
 
 .action-info {
-  background: #152033;
-  border-color: #2f4b6e;
+  background: var(--brand-soft);
+  border: 1px solid rgba(15, 159, 143, 0.35);
 }
 
 .action-danger {
-  background: #2a1c14;
-  border-color: #7a4a1a;
-  color: #ffd79a;
+  background: rgba(232, 168, 56, 0.12);
+  border: 1px solid rgba(232, 168, 56, 0.35);
+  color: #f3d59a;
+}
+
+.action-danger .action-dot {
+  background: var(--warn);
 }
 
 .action-muted {
   background: var(--bg-elevated);
+  border: 1px solid var(--border-soft);
+}
+
+.action-muted .action-dot {
+  background: var(--text-muted);
 }
 
 .top-error {
@@ -169,14 +234,31 @@ const actionClass = computed(() => {
 }
 
 @media (max-width: 900px) {
-  .status-cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .status-strip {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .status-item:nth-child(2n) {
+    border-right: none;
+  }
+
+  .status-item:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--border-soft);
   }
 }
 
 @media (max-width: 520px) {
-  .status-cards {
+  .status-strip {
     grid-template-columns: 1fr;
+  }
+
+  .status-item {
+    border-right: none;
+    border-bottom: 1px solid var(--border-soft);
+  }
+
+  .status-item:last-child {
+    border-bottom: none;
   }
 }
 </style>

@@ -19,14 +19,14 @@
         <span class="placeholder-value">준비 중</span>
       </div>
     </div>
-    <p class="hint muted">위험한 상태인지, 내가 조치할 일이 있는지는 위쪽 안내를 먼저 보세요.</p>
+    <p class="hint muted">위험 여부·조치 안내는 위쪽 상태 카드에서 먼저 확인하세요.</p>
   </section>
 </template>
 
 <style scoped>
 .hint {
-  margin: 12px 0 0;
+  margin: 14px 0 0;
   font-size: 12px;
-  line-height: 1.4;
+  line-height: 1.45;
 }
 </style>

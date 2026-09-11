@@ -1,10 +1,9 @@
 <template>
-  <section class="panel">
+  <section class="panel market-panel">
     <div class="head">
       <h2 class="panel-title">시장 상황 · 전략</h2>
-      <!-- 개발용 Mock — 실제 서비스 기능 아님 -->
       <div class="dev-controls">
-        <span class="dev-label">개발용 시장 예시</span>
+        <span class="dev-label">개발용 예시</span>
         <select
           :value="scenario"
           :disabled="loading"
@@ -44,12 +43,12 @@
         <p class="hero-desc">{{ regimeCopy.description }}</p>
       </div>
       <div class="hero-side">
-        <div>
+        <div class="side-box">
           <span class="metric-label">지금 쓰는 전략</span>
           <p class="side-value">—</p>
           <p class="side-hint muted">준비 중</p>
         </div>
-        <div>
+        <div class="side-box">
           <span class="metric-label">내가 할 일</span>
           <p class="side-value-sm">{{ regimeCopy.actionHint }}</p>
         </div>
@@ -169,17 +168,24 @@ function onSelect(e) {
 </script>
 
 <style scoped>
+.market-panel {
+  border-top: 2px solid var(--brand);
+}
+
 .head {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 12px;
+  margin-bottom: 14px;
 }
 
 .head .panel-title {
   margin-bottom: 0;
+  font-family: var(--display);
+  font-size: 15px;
+  color: var(--text);
 }
 
 .dev-controls {
@@ -187,16 +193,16 @@ function onSelect(e) {
   flex-wrap: wrap;
   align-items: center;
   gap: 8px;
-  padding: 6px 8px;
-  border: 1px dashed #4a5564;
-  border-radius: 6px;
-  background: #141a22;
+  padding: 6px 10px;
+  border: 1px dashed rgba(15, 159, 143, 0.45);
+  border-radius: var(--radius-sm);
+  background: var(--brand-soft);
 }
 
 .dev-label {
   font-size: 11px;
   font-weight: 700;
-  color: var(--warn);
+  color: var(--brand);
 }
 
 select,
@@ -204,13 +210,19 @@ select,
   background: var(--bg-elevated);
   color: var(--text);
   border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 6px 10px;
+  border-radius: 6px;
+  padding: 7px 11px;
   font-size: 13px;
 }
 
 .btn {
   cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.btn:hover:not(:disabled) {
+  border-color: var(--brand);
+  background: rgba(15, 159, 143, 0.12);
 }
 
 .btn:disabled,
@@ -222,53 +234,68 @@ select:disabled {
 .err {
   color: var(--danger);
   font-size: 13px;
-  margin: 0 0 10px;
+  margin: 0 0 12px;
 }
 
 .hero {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
+  grid-template-columns: 1.45fr 1fr;
   gap: 14px;
   margin-bottom: 14px;
 }
 
 .hero-main {
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 14px 16px;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, var(--brand-soft), transparent 55%),
+    var(--bg-elevated);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  padding: 18px 20px;
 }
 
 .hero-label {
-  margin: 4px 0 8px;
-  font-size: 28px;
+  margin: 6px 0 10px;
+  font-family: var(--display);
+  font-size: 34px;
   font-weight: 700;
-  line-height: 1.2;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
 }
 
 .hero-desc {
   margin: 0;
   font-size: 14px;
   color: var(--text-muted);
-  line-height: 1.45;
+  line-height: 1.5;
+  max-width: 42ch;
 }
 
 .hero-side {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
+}
+
+.side-box {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
 }
 
 .side-value {
   margin: 4px 0 0;
-  font-size: 20px;
+  font-family: var(--display);
+  font-size: 22px;
   font-weight: 700;
 }
 
 .side-value-sm {
-  margin: 4px 0 0;
+  margin: 6px 0 0;
   font-size: 14px;
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 .side-hint {
@@ -280,21 +307,22 @@ select:disabled {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 10px;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .plain-card {
   background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 10px 12px;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .plain-value {
-  font-size: 16px;
+  font-family: var(--display);
+  font-size: 18px;
   font-weight: 700;
 }
 
@@ -302,18 +330,18 @@ select:disabled {
 .tone-down { color: var(--down); }
 .tone-danger { color: var(--danger); }
 .tone-warn { color: var(--warn); }
-.tone-strong { color: var(--accent); }
+.tone-strong { color: var(--brand); }
 .tone-normal { color: var(--text); }
 .tone-muted { color: var(--text-muted); }
 
 .details {
-  border-top: 1px solid var(--border);
-  padding-top: 10px;
+  border-top: 1px solid var(--border-soft);
+  padding-top: 12px;
 }
 
 .details summary {
   cursor: pointer;
-  color: var(--text-muted);
+  color: var(--brand);
   font-size: 13px;
   font-weight: 600;
   user-select: none;
